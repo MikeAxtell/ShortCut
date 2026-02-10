@@ -55,6 +55,31 @@ Get some example small RNA-seq files from SRA. (Assumes installation of `fasterq
 Then, using four threads:
 `ShortCut --fastq *.fastq --threads 4`
 
+## Output details
+### Condensed FASTA files
+Each input FASTQ file results in three condensed FASTA files: 
+- The 'Short' directory contains FASTA files beginning with 's_'. These result from reads that were successfully adapter trimmed, but after trimming were shorter than the length set by option `--min_read_size` (default = 12).
+- The 'trimmed_ok' directory contains FASTA files beginning with 't_'. These result from reads that were successfully adapter trimmed, and were >= `--min_read_size` after trimming.
+- The 'untrimmed' directory contains FASTA files beginning with 'u_'. These result from reads were the adapter was not identified, and thus were not trimmed.
+
+Small RNA-seq data often contain multiple reads with the same sequence. These are often microRNAs or siRNAs that were highly abundant in the sample. "Read condensation" refers to the process of condensing the input for alignment such that each unique sequence is only represented once in the condensed FASTA file. Suppose the sequence TCGGACCAGGCTTCATTCCCC was the sequence for 509,066 reads. Instead of repetitively writing, and aligning, the same sequence over and over we can instead write a single FASTA entry. Example of condensed format:
+```
+>t_SRR3222443_Cd1_509066
+TCGGACCAGGCTTCATTCCCC
+```
+
+- `t_SRR3222443` : Prefix specific for the input read file. The `t_` indicates trimmed.
+- `Cd1` : `Cd` means "condensed". The integer after is a unique integer within that file.
+- `_509066` : The trailing integer that represents the total number of reads that have this sequence. In this case, 509,066 reads with this sequence.
+
+### Reads vs. Sequences
+A **read** is a single FASTQ output from the sequencer. A **sequence** is a unique sequence of DNA/RNA which may have been observed one or more times in an experiment.
+
+### ShortCut_tallys.csv
+This is a .csv file containing summary information on read counts and sequence counts by RNA length, Category (either trimmed_ok, short, or untrimmed), and Source file.
+
+### ShortCut_Results.html
+This is a report that is viewable with a web browser. It shows several interactive plots that are informative for assessing library trimming results.
 
 
 
