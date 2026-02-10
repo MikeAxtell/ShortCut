@@ -76,11 +76,11 @@ TCGGACCAGGCTTCATTCCCC
 A **read** is a single FASTQ output from the sequencer. A **sequence** is a unique sequence of DNA/RNA which may have been observed one or more times in an experiment.
 
 ### ShortCut_tallys.csv
-This is a .csv file containing summary information on read counts and sequence counts by RNA length, Category (either trimmed_ok, short, or untrimmed), and Source file.  [View example csv](examples/ShortCut_tallys.csv)
+This is a .csv file containing summary information on read counts and sequence counts by RNA length, Category (either trimmed_ok, short, or untrimmed), and Source file.  [View example csv](example/ShortCut_tallys.csv)
 
 
 ### ShortCut_Results.html
-This is a report that is viewable with a web browser. It shows several interactive plots that are informative for assessing library trimming results. [View example report](examples/ShortCut_Results.html)
+This is a report that is viewable with a web browser. It shows several interactive plots that are informative for assessing library trimming results. [View example report](example/ShortCut_Results.html)
 
 
 
